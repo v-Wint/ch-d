@@ -1,0 +1,114 @@
+{% csrf_token %}
+
+<div class="row mb-3">
+    <div class="col-md">
+        <label for="{{ form.author.id_for_label }}" class="col-form-label-lg">{{form.author.label}}</label>
+        
+        {{form.author}}
+        <div class="invalid-feedback">
+            {% for error in form.author.errors %}
+                <p class="small m-0">{{error}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md">
+        <label for="{{ form.song.id_for_label }}" class="col-form-label-lg">{{form.song.label}}</label>
+        
+        {{form.song}}
+        <div class="invalid-feedback">
+            {% for error in form.song.errors %}
+                <p class="small m-0">{{error}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-md">
+        <label for="{{ form.tuning.id_for_label }}" class="col-form-label-lg">{{form.tuning.label}}</label>
+        
+        {{form.tuning}}
+        <div class="invalid-feedback">
+            {% for error in form.tuning.errors %}
+                <p class="small m-0">{{error}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md">
+        <label for="{{ form.key.id_for_label }}" class="col-form-label-lg">{{form.key.label}}</label>
+        
+        {{form.key}}
+        <div class="invalid-feedback">
+            {% for error in form.key.errors %}
+                <p class="small m-0">{{error}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md">
+        <label for="{{ form.capo.id_for_label }}" class="col-form-label-lg">{{form.capo.label}}</label>
+        
+        {{form.capo}}
+        <div class="invalid-feedback">
+            {% for error in form.capo.errors %}
+                <p class="small m-0">{{error}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md">
+        <label for="{{ form.strumming.id_for_label }}" class="col-form-label-lg">{{form.strumming.label}}</label>
+        
+        {{form.strumming}}
+        <div class="invalid-feedback">
+            {% for error in form.strumming.errors %}
+                <p class="small m-0">{{error}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<p class="fs-4 mt-0">Text</p>
+<div class="row mb-3">
+    <div class="col-md">
+        {{form.text.label}}
+        {{form.text}}
+        <div class="invalid-feedback">
+            {% for error in form.text.errors %}
+                <p class="small m-0">{{error}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-1 text-center my-auto ">
+        <button type="button" class="btn btn-secondary mt-3" id="process">></button>
+    </div>
+
+    <div class="col-md ">
+        Preview
+        <div id="preview">
+            
+        </div>
+    </div>
+</div>
+
+<p class="fs-4 m-0 mt-5">Links</p>
+<div class="row mb-3">
+    <div class="col-md">
+        <label for="{{ form.youtube.id_for_label }}" class="col-form-label-lg">{{form.youtube.label}}</label>
+        
+        {{form.youtube}}
+        <div class="invalid-feedback">
+            {% for error in form.youtube.errors %}
+                <p class="small m-0">{{error}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md">
+        <label for="{{ form.spotify.id_for_label }}" class="col-form-label-lg">{{form.spotify.label}}</label>
+        
+        {{form.spotify}}
+        <div class="invalid-feedback">
+            {% for error in form.spotify.errors %}
+                <p class="small m-0">{{error}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="warnings"></div>

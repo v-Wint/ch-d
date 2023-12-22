@@ -1,0 +1,91 @@
+/* navbar */
+.profile-picture {
+    width: 2.4rem;
+    border-radius: 50%;
+}
+
+#search {
+    height: calc(1rem * var(--line-height)  + var(--border-width));
+    width: 60%;
+}   
+
+/* add form */
+textarea {
+    border-radius: 0.1rem !important;
+}
+#id_text {
+    height: 100%;
+    font-size: 0.9rem !important;
+    resize: none;
+}
+
+#preview {
+    border: 1px solid white;
+    height:100%;
+    border-radius: 0.1rem;
+    color: var(--bs-body-color);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    padding: .375rem .75rem;
+    white-space: pre-wrap;
+    font-size: 0.9rem;
+}
+
+/* when small textare doesn't change height, but preview does */
+@media (max-width: 768px) {
+    #id_text {
+        height: 400px;
+    }
+    #preview {
+        min-height:400px;
+    }
+}
+
+.ui-menu-item {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+}
+
+.ui-menu {
+    border: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+.warnings {
+    color: orangered;
+}
+
+
+/* view */
+.link {
+    color: rgba(var(--bs-body-color));
+    text-decoration: none;
+    cursor:pointer;
+}
+
+.link:hover {
+    color: var(--bs-white);
+    text-decoration:underline;
+}
+
+.chord {
+    color: plum;
+    cursor:pointer;
+}
+.chord:hover {
+    text-decoration:underline;
+}
+
+.text {
+    white-space: pre-wrap;
+    font-size: 0.9rem;
+}
+
+
+.card {
+    border-radius: var(--bs-card-border-radius) / 2
+}
+
+
+/* moderate */
+.form-control:disabled {
+    background-color: var(--bs-primiary-bg);
+}

@@ -1,0 +1,23 @@
+{% extends "base/entry_view_base.html" %}
+
+{% block title %}
+    {{entry}}
+{% endblock %}
+
+
+{% block titles %}
+<h1>{{entry.author}}</h1>
+<h2 class="d-inline ">{{entry.song}}</h2>
+<p> ver. {{entry.number}}</p>
+<p><a href="{% url 'profile' entry.added_by.slug %}" class="link">Added by: {{entry.added_by.username}}</a></p>
+
+
+{% endblock %}
+
+{% block save-button %}
+    {% if entry.is_saved %}
+        <button type="button" class="btn btn-secondary mx-md-3 my-1" id="button-save" value="1" data-url="{% url 'api_save' %}?type=private&id={{entry.id}}">Remove chords</button>
+    {% else %}
+        <button type="button" class="btn btn-outline-light mx-md-3 my-1" id="button-save" value="0" data-url="{% url 'api_save' %}?type=private&id={{entry.id}}">Save chords</button>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+{% block title %}Sign Up{% endblock title %}
+{% block content %}
+<h2>Sign Up</h2>
+<form method="post" novalidate>
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="col-md-4">
+            <label for="id_username" class="col-form-label-lg was-validated">{{form.username.label}}</label>
+            {{form.username}}
+            <div class="invalid-feedback ">
+                {% for error in form.username.errors %}
+                    <p class="small m-0">{{error}}</p>
+                {% endfor %}
+            </div>
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-md-4">
+            <label for="id_email" class="col-form-label-lg">{{form.email.label}}</label>
+            {{form.email}}
+            <div class="invalid-feedback ">
+                {% for error in form.email.errors %}
+                    <p class="small m-0">{{error}}</p>
+                {% endfor %}
+            </div>
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="id_email" class="col-form-label-lg">{{form.password1.label}}</label>
+            {{form.password1}}
+            <div class="invalid-feedback ">
+                {% for error in form.password1.errors %}
+                    <p class="small m-0">{{error}}</p>
+                {% endfor %}
+            </div>
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-md-4">
+            <label for="id_password2" class="col-form-label-lg">{{form.password2.label}}</label>
+            {{form.password2}}
+            <div class="invalid-feedback">
+                {% for error in form.password2.errors %}
+                    <p class="small m-0">{{error}}</p>
+                {% endfor %}
+            </div>
+            <div class="valid-feedback">Looks good!</div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+</form>
+{% endblock content %}

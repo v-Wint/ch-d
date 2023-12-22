@@ -1,0 +1,59 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+Search: {{request.GET.q}}
+{% endblock %}
+
+
+{% block content %}
+<h1> Search results for: {{request.GET.q}} </h1>
+
+
+{% if authors %}
+<h2 class="mt-4">Authors</h2>
+<ul class="list-group col-md-8 col-lg-6 mt-2">
+    {% for author in authors %}
+    <a href="{% url 'author_entries' author.slug %}" class="list-group-item list-group-item-action">{{author}}</a>
+    {% endfor %}
+</ul>
+
+{% endif %}
+
+
+{% if songs %}
+<h2 class="mt-4">Songs</h2>
+<div class="accordion col-md-8 col-lg-6 mt-2" id="my-accordion">
+    {% for song in songs %}
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{forloop.counter}}" aria-expanded="true" aria-controls="collapse{{forloop.counter}}">
+                {{song}}
+            </button>
+        </h2>
+
+        <div class="accordion-collapse collapse" id="collapse{{forloop.counter}}" data-bs-parent="#my-accordion">
+            <div class="accordion-body" >
+                <table class="table table-hover">
+                    {% for entry in song.publicentry_set.all %}
+                    <tr><td onclick="window.location='{% url 'public_entry' song.author.slug song.slug entry.number %}'">
+                        <a href="{% url 'public_entry' song.author.slug song.slug entry.number %}" class="text-decoration-none text-light">ver. {{entry.number}}</a>
+                    </td></tr>
+                    {% endfor %}
+                </table>              
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+</ul>
+
+{% endif %}
+
+
+{% if not songs and not authors %}
+
+    <p>Nothing to see there...</p>
+{% endif %}
+
+
+{% endblock %}

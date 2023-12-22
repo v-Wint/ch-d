@@ -1,0 +1,29 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+    Saved chords
+{% endblock %}
+
+
+{% block content %}
+<h1> Saved chords </h1>
+
+
+{% if entries %}
+    <ul class="list-group col-12 col-lg-8 mt-5 mb-5">
+        {% for entry in entries %}
+            <a href="{{entry.link}}" class="list-group-item list-group-item-action ">
+                {{entry.title}}
+                {% if entry.is_public %}
+                <small class="float-end text-muted">public</small>
+                {% endif %}
+            </a>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Nothing to see there...</p>
+{% endif %}
+
+
+
+{% endblock %}

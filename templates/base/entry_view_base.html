@@ -1,0 +1,86 @@
+{% extends "base/base.html" %}
+
+{% block imports %}
+    {% load static %}
+    <script src="{% static 'view.js'%}" type="module"></script>
+    <script type="text/javascript" src="{% static 'raphael.js'%}"></script>
+    <script type="text/javascript" src="{% static 'raphael.chord.js'%}"></script>
+{% endblock %}
+
+{% block content %}
+
+    {% block titles %}
+    {% endblock %}
+
+
+{% if entry.tuning %}
+    <p>Tuning: {{entry.tuning}}</p>
+{% endif %}
+{% if entry.key %}
+    <p>Key: {{entry.key}}</p>
+{% endif %}
+{% if entry.capo %}
+    <p>Capo: {{entry.capo}}</p>
+{% endif %}
+{% if entry.strumming %}
+    <p>Strumming: {{entry.strumming}}</p>
+{% endif %}
+
+<br>
+
+<div class="ps-2">
+    <div class="row">
+        <div class="col-md-auto p-0">
+            Tonality: 
+            <div class="btn-group mx-md-3 my-2" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-primary" id="transpose-backward">❮</button>
+                <button type="button" class="btn btn-primary" id="transpose-counter">0</button>
+                <button type="button" class="btn btn-outline-primary" id="transpose-forward">❯</button>
+            </div>
+        </div>
+        <div class="col-md-auto p-0">
+            <button type="button" class="btn btn-outline-primary mx-md-3 mx-0 my-2" id="simplify">Simplify</button>
+            <select class="form-select align-middle w-auto d-inline mx-md-3 mx-0 my-2" id="instrument" aria-label="Default select example">
+                <option value="1">Piano</option>
+                <option value="2">Guitar</option>
+            </select>
+            {% block save-button %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-10 col-md-9 col-lg-7 col-xl-6 col-xxl-5 p-1 p-md-2 pb-3 text">
+{{ entry.text | safe }}
+    </div>
+    <div class="col-1 px-0">
+        <div class="btn-group-vertical my-5 " role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-outline-primary" id="scroll-up">⯅</button>
+            <button type="button" class="btn btn-primary" id="scroll-count">0</button>
+            <button type="button" class="btn btn-outline-primary" id="scroll-down">⯆	</button>
+        </div>
+    </div>
+</div>
+
+<br>
+
+{% if youtube_frame %}
+    <h5>Youtube:</h5>
+
+    {{youtube_frame|safe}}
+
+{% endif %}
+
+{% if spotify %}
+    <h5 class="p-0 m-0 mt-2">Spotify:</h5>
+    <p class="mb-2 mt-1">
+        <a href="{{spotify}}">{{spotify}}</a>
+    </p>
+{% endif %}
+
+{% block comments %}
+{% endblock %}
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base/base.html" %}
+
+
+{% block title %}
+  Moderate comment
+{% endblock %}
+
+
+{% block content %}
+
+<h2>Moderate entry</h2>
+
+
+<form method="post">
+{% csrf_token %}
+<div class="row mb-3">
+    <div class="col-md-3">
+        <label for="{{ form.added_by.id_for_label }}" class="col-form-label-lg">{{form.added_by.label}}</label>
+
+        {{form.added_by}}
+    </div>
+    <div class="col-md-5">
+        <label for="{{ form.entry.id_for_label }}" class="col-form-label-lg">{{form.entry.label}}</label>
+
+        {{form.entry}}
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-md-8">
+        <label for="{{ form.body.id_for_label }}" class="col-form-label-lg">{{form.body.label}}</label>
+
+        {{form.body}}
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-primary me-2 " name="publish">Approve</button>
+        <button type="submit" class="btn btn-danger ms-2 " name="delete">Delete</button>
+    </div>
+</div>
+
+</form>
+
+
+{% endblock %}

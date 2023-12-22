@@ -1,0 +1,74 @@
+{% extends "base/entry_view_base.html" %}
+
+
+{% block title %}
+    {{entry}}
+{% endblock %}
+
+{% block titles %}
+<h1><a href="{% url 'author_entries' entry.song.author.slug %}" class="link">{{entry.song.author}}</a></h1>
+<h2>{{entry.song.title}}</h2>
+<p> ver. {{entry.number}}</p>
+
+<p><a href="{% url 'profile' entry.added_by.slug %}" class="link">Added by: {{entry.added_by.username}}</a></p>
+
+{% endblock %}
+
+
+{% block save-button %}
+{% if user.is_authenticated %}
+    {% if entry_added %}
+        <button type="button" class="btn btn-secondary mx-md-3 my-1" id="button-save" value="1" data-url="{% url 'api_save' %}?type=public&id={{entry.id}}">Remove chords</button>
+    {% else %}
+        <button type="button" class="btn btn-outline-light mx-md-3 my-1" id="button-save" value="0" data-url="{% url 'api_save' %}?type=public&id={{entry.id}}">Save chords</button>
+    {% endif %}
+{% endif %}
+
+{% endblock %}
+
+
+{% block comments %}
+<br>
+
+<h5>Comments: </h5>
+
+<div class="row">
+    <div class="col-10 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
+        {% if user.is_authenticated %}
+            <p>Write your comment: </p>
+            <div class="input-group my-3">
+                <input type="text" name="comment" maxlength="1000" class="form-control d-inline w-auto" id="id_comment">
+                <button class="btn btn-outline-light d-inline" type="button" id="button-comment" data-url="{% url 'add_comment' %}?id={{entry.id}}">Publish</button>
+            </div>
+        {% endif %}
+        <div class="comments">
+            {% for comment in entry.comment_set.all|dictsortreversed:"added_date" %} 
+                <div class="card my-3">
+                    <div class="card-header">
+                        <p class="float-start m-0">{{comment.added_by.username}}</p>
+                        
+                        <p class="float-end m-0">{{comment.added_date|date:'d.m.y H:i'}}</p>
+                    </div>
+                    <div class="row m-0">
+                        <div class="col-2 d-flex align-items-center justify-content-center p-0" >
+                            {% if comment.added_by.pfp %}
+                                <img class="card-img-top my-2 d-block w-75" src="/media/{{comment.added_by.pfp}}">
+                            {% else %}
+                                <img class="card-img-top my-2 d-block w-75" src="https://i.postimg.cc/jdSrCVyg/default.png">
+                            {% endif %}
+                        </div>
+                        <div class="col-10 p-0">
+                            <div class="card-body ">
+                                <div class="card-text">
+                                    {{comment.body}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

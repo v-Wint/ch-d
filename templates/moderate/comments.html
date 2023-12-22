@@ -1,0 +1,17 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+    Moderate comments
+{% endblock %}
+
+
+{% block content %}
+
+<p class="p-2">
+    <a href="{% url 'moderate_entries'%}">Go to entries</a>
+</p>
+
+{% load django_tables2 %}
+{% render_table table %}
+
+{% endblock %}

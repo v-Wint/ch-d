@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+
+
+{% block title %}
+    Moderate entry
+{% endblock %}
+
+
+{% block imports %}
+    {% include 'base/entry_form_imports.html' %}
+{% endblock imports %}
+
+{% block content %}
+
+<h2>Moderate entry</h2>
+
+<form method="post" class="w-100 mb-5" novalidate>
+    {% include 'base/entry_form.html' %}
+    <button type="submit" class="btn btn-primary my-2 me-3" name="publish">Publish</button>
+    <button type="submit" class="btn btn-danger my-2 ms-3" name="delete">Delete</button>
+</form>
+
+
+{% endblock %}

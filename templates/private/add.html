@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+
+{% block title %}
+    Add chords
+{% endblock title %}
+
+
+{% block imports %}
+    {% include 'base/entry_form_imports.html' %}
+{% endblock imports %}
+
+
+{% block content %}
+<h2>Add chords</h2>
+
+{% if user.is_authenticated %}
+    <form method="post" class="w-100 mb-5" novalidate>
+        {% include 'base/entry_form.html' %}
+        
+        <button type="submit" class="btn btn-primary my-2 me-3" name="add">Add to my collection</button>
+        <button type="submit" class="btn btn-outline-primary my-2 ms-3" name="publish">Add to my collection and publish</button>
+    </form>
+{% else %}
+
+    <p class="small">You're not logged in. Please log in to be able to add a song</p>
+    <a href="{% url 'login'%}?next=/add/" class="small btn btn-primary">Log in</a>
+
+{% endif %}
+
+{% endblock content %}

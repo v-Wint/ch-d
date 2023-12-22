@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Log In{% endblock title %}
+
+{% block content %}
+
+<h2>Log in</h2>
+<form method="post" novalidate>
+    {% csrf_token %}
+
+    <div class="col-md-5">
+        <label for="{{ form.username.id_for_label }}" class="col-form-label-lg">{{form.username.label}}</label>
+        {{form.username}}
+        <div class="invalid-feedback">
+            {% for error in form.username.errors %}
+                <p class="small m-0">{{error}}</p>
+            {% endfor %}
+        </div>
+        <div class="valid-feedback">Looks good!</div>
+    </div>
+    <div class="mb-1 col-md-5">
+        <label for="{{ form.password.id_for_label }}" class="col-form-label-lg">{{form.password.label}}</label>
+        {{form.password}}
+        <div class="invalid-feedback">
+            {% for error in form.password.errors %}
+                <p class="small m-0">{{error}}</p>
+            {% endfor %}
+        </div>
+        <div class="valid-feedback">Looks good!</div>   
+    </div>
+
+    {% for error in  form.non_field_errors %}
+        <p class="small m-0 col-md-5">{{error}}</p>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary mt-2 col-md-5">Log in</button>
+</form>
+<p class="small mt-1">Not registered yet? <a href="{% url 'signup' %}">Sign up</a> </p>
+{% endblock content %}
+
+
+
