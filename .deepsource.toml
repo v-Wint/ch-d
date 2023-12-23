@@ -3,7 +3,8 @@ version = 1
 exclude_patterns = [
   "venv/",
   "static/raphael.js",
-  "static/raphael.chord.js"
+  "static/raphael.chord.js",
+  "staticfiles/"
 ]
 
 [[analyzers]]
